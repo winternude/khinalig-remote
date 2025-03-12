@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expanding Grid Item with Print Postcard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Alpine.js for accordion if needed -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <!-- Our dedicated vanilla JS file -->
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!-- Navigation (fixed at top) -->
+  <nav class="nav" id="nav">
+    <div class="nav__header">
+      <div class="nav__left">
+        <div class="nav__logo">
+          <a href="/">KHINALYG.REMOTE</a>
+        </div>
+        <div class="nav__slogan">
+          take a scroll through the highest, most remote and isolated village in Azerbaijan using google services
+        </div>
+      </div>
+      <div class="nav__controls">
+        <button class="nav__about-button" id="toggleNav">About</button>
+      </div>
+    </div>
+    <!-- Accordion content (initially hidden) -->
+    <div class="nav__accordion" id="accordion">
+      <div class="nav__accordion-content">
+        <div class="nav__title-container">
+          <h1 class="nav__title">A project by OMDD for the exhibition link by Nylia Mousaeva, Hfk Bremen 2025</h1>
+          <span class="nav__title-text">Additional Title Text</span>
+        </div>
+        <!-- Flex container wrapping about description and print button -->
+        <div class="nav__about-print">
+          <p class="nav__about-description">
+            Khinalyg is located just south-west of Quba in the middle of the Greater Caucasus mountains that divide the Northern Caucasus in Russia from the South Caucasus. Khinalug is also the highest, most remote and isolated village in Azerbaijan and among the highest in the Caucasus. It is a prime spot for tourism, and so has been tracked and made available via google streetview. So digitally everything is virtually at our fingertips and in reach. Send someone a card that you were there digitally...
+          </p>
+          <div class="nav__print">
+            <button class="nav__print-button" id="printPostcard" title="Paper Size: A4, Margins: None, Scale: 80%">Print Postcard</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Print Wrapper for printing (normal on-screen, but used only for print) -->
+  <div class="print-wrapper" id="printWrapper">
+    <!-- Grid Container with 12 grid items (desktop only) -->
+    <div class="container" id="gridContainer">
+      <div class="container__item container__item--1"></div>
+      <div class="container__item container__item--2"></div>
+      <div class="container__item container__item--3"></div>
+      <div class="container__item container__item--4"></div>
+      <div class="container__item container__item--5"></div>
+      <div class="container__item container__item--6"></div>
+      <div class="container__item container__item--7"></div>
+      <div class="container__item container__item--8"></div>
+      <div class="container__item container__item--9"></div>
+      <div class="container__item container__item--10"></div>
+      <div class="container__item container__item--11"></div>
+      <div class="container__item container__item--12"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Message -->
+  <div class="mobile-message">Open this on Desktop</div>
+</body>
+</html>

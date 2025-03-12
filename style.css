@@ -1,0 +1,458 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+}
+
+/* Global Loader Overlay */
+#global-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 1rem;
+  background: #000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 550;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#global-loader.visible {
+  display: flex;
+  opacity: 1;
+}
+
+.global-loader-spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #333;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Body sizing */
+body:not(.body--expanded) {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body.body--expanded {
+  height: auto;
+  overflow: auto;
+}
+
+/* Navigation Styles */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 600; /* Nav stays above everything */
+  background: #fff;
+  overflow: visible; /* Allow overflow so tooltips aren’t clipped */
+  transition: height 0.5s ease-in-out;
+  height: 1rem; /* Closed state */
+  display: flex;
+  flex-direction: column;
+}
+.nav.expanded {
+  height: 25vh;
+}
+.nav__header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1rem;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin: 0;
+  overflow: hidden; /* Header itself can remain hidden */
+  flex-shrink: 0;
+}
+.nav__left {
+  display: flex;
+  align-items: center;
+}
+.nav__logo {
+  font-family: "EB Garamond", serif;
+  font-weight: thin;
+  font-size: 0.75rem;
+  color: #000;
+}
+.nav__logo a {
+  text-decoration: none;
+  color: #000;
+  font-family: "EB Garamond", serif;
+  font-weight: thin;
+}
+.nav__slogan {
+  margin-left: 1.44rem;
+  font-size: 0.625rem;
+  color: #000;
+  font-family: "Noto Sans", sans-serif;
+}
+.nav__controls {
+  display: flex;
+  gap: 0.5rem;
+}
+.nav__about-button, .nav__print-button {
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-family: "EB Garamond", serif;
+  line-height: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+}
+.nav__accordion {
+  margin-top: auto;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  overflow: visible !important; /* Ensure the accordion does not clip its contents */
+  display: none;
+}
+.nav__accordion-content {
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  overflow: visible !important; /* Ensure overflow is visible */
+}
+.nav__accordion-content .nav__title-container {
+  display: flex;
+  align-items: center;
+  font-family: "Noto Sans", sans-serif;
+}
+.nav__accordion-content .nav__title {
+  margin: 0;
+  font-size: 0.625rem;
+  color: #6f6f6f;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: normal;
+  text-transform: none;
+}
+.nav__accordion-content .nav__title-text {
+  display: none;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: #6f6f6f;
+  font-weight: 600;
+}
+.nav__accordion-content .nav__about-print {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+  color: #6f6f6f;
+  overflow: visible; /* Allow tooltip overflow */
+}
+.nav__accordion-content .nav__about-description {
+  margin: 0;
+  border: none;
+  font-family: "Noto Sans", sans-serif;
+  color: #6f6f6f;
+}
+.nav__accordion-content .nav__print {
+  margin-top: 0;
+  align-self: start;
+  margin-left: auto;
+  padding: 0.33rem 0.175rem;
+  border: 1px solid #6f6f6f;
+  color: #6f6f6f;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  font-family: "EB Garamond", serif;
+  overflow: visible; /* Ensure tooltip not clipped */
+}
+
+/* Grid Container Styles */
+.container {
+  width: 100%;
+  position: absolute;
+  top: 1rem; /* below nav */
+  display: grid;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  grid-template-areas: "item1 item1 item1 item1 item1 item2" "item3 item3 item3 item4 item4 item4" "item5 item5 item5 item6 item6 item6";
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 30% 50% 20%;
+}
+
+/* Grid Items */
+.container__item {
+  position: relative;
+  overflow: hidden;
+  transition: top 0.6s cubic-bezier(0.4, 0, 0.2, 1), left 0.6s cubic-bezier(0, 0, 0.2, 1), width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+  will-change: top, left, width, height, opacity;
+  /* Box shadow via pseudo-element */
+}
+.container__item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  box-shadow: inset 0px -4px 12px rgba(0, 0, 0, 0.5), inset 0px 2px 12px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.container__item iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Icon inside each grid item */
+.container__item-icon {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  z-index: 3;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+.container__item-icon img {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Loading Overlay for grid items */
+.loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.loader-overlay.hide {
+  opacity: 0;
+}
+
+.loader-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #333;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+}
+
+/* Grid item placements */
+.container__item--1 {
+  grid-area: item1;
+}
+
+.container__item--2 {
+  grid-area: item2;
+}
+
+.container__item--3 {
+  grid-area: item3;
+}
+
+.container__item--4 {
+  grid-area: item4;
+}
+
+.container__item--5 {
+  grid-area: item5;
+}
+
+.container__item--6 {
+  grid-area: item6;
+}
+
+.container__item--7 {
+  grid-area: item1;
+}
+
+.container__item--8 {
+  grid-area: item2;
+}
+
+.container__item--9 {
+  grid-area: item3;
+}
+
+.container__item--10 {
+  grid-area: item4;
+}
+
+.container__item--11 {
+  grid-area: item5;
+}
+
+.container__item--12 {
+  grid-area: item6;
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media only screen and (max-width: 800px) {
+  .container {
+    display: none;
+  }
+  .nav__print-button {
+    display: none;
+  }
+  .nav__print {
+    display: none;
+  }
+  .nav {
+    height: 100vh !important;
+  }
+  .nav__about-button {
+    display: none !important;
+  }
+  .nav__accordion {
+    display: block !important;
+    overflow: visible;
+  }
+  .nav__header {
+    height: auto;
+    padding: 1rem 0.5rem;
+  }
+  .nav__left {
+    align-items: flex-start;
+  }
+  .mobile-message {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    z-index: 1000;
+  }
+}
+/* Print Styles */
+@media print {
+  @page {
+    margin: 0;
+  }
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .nav {
+    display: none;
+  }
+  .container__item-icon {
+    display: none !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .container, .container * {
+    visibility: visible;
+  }
+  /* Freeze the grid container with fixed dimensions for print */
+  .container {
+    position: relative;
+    overflow: hidden;
+    transform: none;
+    grid-template-rows: 115px 192px 77px;
+    /* Force a fixed 3:2 aspect ratio for print (900px x 600px) */
+    width: 900px;
+    height: 600px;
+  }
+  .container__item iframe {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+}
+/* Tooltip for Print Postcard Button */
+.nav__print-button {
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+  padding: 0.25rem 0.5rem;
+}
+
+.nav__print-button:hover::after {
+  content: "Adjust Print Settings for Optimal Results";
+  position: absolute;
+  bottom: calc(100% + 1.5rem);
+  left: -0.5rem;
+  width: calc(100% + 0.75rem);
+  box-sizing: border-box;
+  background: #000;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  white-space: normal;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.625rem;
+  text-transform: none;
+  text-align: left;
+  z-index: 10000;
+  opacity: 0;
+  /* add a delay before the tooltip appears */
+  transition: opacity 0.3s ease-out 0.3s;
+}
+
+.nav__print-button:hover::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 1.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  border: 10px solid transparent;
+  border-top-color: #000;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease-out 0.3s;
+}
+
+.nav__print-button:hover::after,
+.nav__print-button:hover::before {
+  opacity: 1;
+}/*# sourceMappingURL=style.css.map */
