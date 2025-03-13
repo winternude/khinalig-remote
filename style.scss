@@ -355,7 +355,7 @@ body.body--expanded {
   }
   .nav__header {
     height: auto;
-    padding: 1rem 0.5rem;
+    padding: 0.375rem 0.5rem;
   }
   .nav__left {
     align-items: flex-start;
@@ -371,6 +371,7 @@ body.body--expanded {
     text-align: center;
     color: black;
     z-index: 1000;
+    font-family: $font-sans;
   }
 }
 
