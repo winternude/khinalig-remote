@@ -165,6 +165,10 @@ body.body--expanded {
   font-family: "Noto Sans", sans-serif;
   font-weight: normal;
   text-transform: none;
+  color: #6f6f6f;
+}
+.nav__accordion-content .nav__title a {
+  color: #6f6f6f;
 }
 .nav__accordion-content .nav__title-text {
   display: none;

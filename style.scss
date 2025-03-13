@@ -172,6 +172,11 @@ body.body--expanded {
       font-family: $font-sans;
       font-weight: normal;
       text-transform: none;
+      color: #6f6f6f;
+
+      a {
+        color: #6f6f6f;
+      }
     }
 
     .nav__title-text {
