@@ -8,11 +8,11 @@ Hey, wanderer. This is an online tool to scroll through Azerbaijans most remote 
 
 ## Credits
 © 2025
-Design – Oliver Matzner [OMDD](https://olivermatzner.com)
+Design – Oliver Matzner [OMDD](https://olivermatzner.com)  
 Development – Matteo Matzner
 
 Typefaces
-[Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
+[Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)  
 [Garamond Eb](https://fonts.google.com/specimen/EB+Garamond)
 
 This website uses no CMS
