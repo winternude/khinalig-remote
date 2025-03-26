@@ -135,6 +135,7 @@ body.body--expanded {
   cursor: pointer;
   font-size: 0.75rem;
   font-family: "EB Garamond", serif;
+  color: #000;
   line-height: 1rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -185,6 +186,7 @@ body.body--expanded {
   border: none;
   color: #6f6f6f;
   overflow: visible; /* Allow tooltip overflow */
+  width: 80vw;
 }
 .nav__accordion-content .nav__about-description {
   margin: 0;
@@ -193,6 +195,7 @@ body.body--expanded {
   color: #6f6f6f;
 }
 .nav__accordion-content .nav__print {
+  display: none;
   margin-top: 0;
   align-self: start;
   margin-left: auto;
