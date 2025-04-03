@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const nav = document.getElementById('nav');
   const expandCollapseNavButton = document.getElementById('toggleNav');
   const printPostcard = document.getElementById('printPostcard');
-  const accordion = document.getElementById('accordion');
   const gridContainer = document.getElementById('gridContainer');
   const body = document.body;
 
@@ -41,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     globalLoader.style.paddingTop = navHeight + "px";
     // Set display to flex then add the "visible" class to trigger opacity transition.
     globalLoader.style.display = 'flex';
-    // Use a slight delay to allow display change (optional)
     requestAnimationFrame(() => {
       globalLoader.classList.add('visible');
     });
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function hideGlobalLoader() {
     globalLoader.classList.remove('visible');
-    // After the transition, hide the element completely.
     setTimeout(() => {
       if (!globalLoader.classList.contains('visible')) {
         globalLoader.style.display = 'none';
@@ -217,20 +214,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Expand/Collapse nav.
+  // Modified Expand/Collapse nav.
   expandCollapseNavButton.addEventListener('click', function() {
     // On mobile, do nothing (nav is always fully expanded).
     if (window.innerWidth <= 768) return;
-    if (nav.classList.contains('expanded')) {
-      accordion.style.display = "none";
-      nav.style.height = "";
-      nav.classList.remove("expanded");
-      body.classList.remove("body--expanded");
-    } else {
-      nav.classList.add("expanded");
-      accordion.style.display = "block";
-      body.classList.add("body--expanded");
-    }
+    // Simply toggle the expanded class on the nav element.
+    nav.classList.toggle("expanded");
+    body.classList.toggle("body--expanded");
   });
 
   // Simplified Print Handler: mimic Ctrl+P.
