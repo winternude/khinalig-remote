@@ -131,7 +131,6 @@ body.body--expanded {
 }
 .nav__about-button, .nav__print-button {
   background: transparent;
-  padding: 0.25rem 0.5rem;
   cursor: pointer;
   font-size: 0.75rem;
   font-family: "EB Garamond", serif;
@@ -140,6 +139,9 @@ body.body--expanded {
   text-transform: uppercase;
   text-decoration: none;
   border: none;
+}
+.nav__about-button {
+  padding: 0;
 }
 .nav__accordion {
   margin-top: auto;

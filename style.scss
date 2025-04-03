@@ -133,7 +133,7 @@ body.body--expanded {
   &__about-button,
   &__print-button {
     background: transparent;
-    padding: 0.25rem 0.5rem;
+    //padding: 0.25rem 0.5rem;
     cursor: pointer;
     font-size: 0.75rem;
     font-family: $font-serif;
@@ -142,6 +142,10 @@ body.body--expanded {
     text-transform: uppercase;
     text-decoration: none;
     border: none;
+  }
+
+  &__about-button {
+    padding: 0;
   }
 
   // Modified Accordion: Always in the DOM and animated with max-height and opacity
