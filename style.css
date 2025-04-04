@@ -175,9 +175,9 @@ body.body--expanded {
   font-weight: normal;
   text-transform: none;
 }
-.nav__accordion-content .nav__title span {
-  color: #6f6f6f;
+.nav__accordion-content .nav__title a {
   text-decoration: underline;
+  color: #6f6f6f;
 }
 .nav__accordion-content .nav__title-text {
   display: none;
@@ -198,7 +198,7 @@ body.body--expanded {
 }
 .nav__accordion-content .nav__about-description {
   margin: 0;
-  padding-top: 0.375rem;
+  padding-top: 0rem;
   border: none;
   font-family: "Noto Sans", sans-serif;
   color: #6f6f6f;
